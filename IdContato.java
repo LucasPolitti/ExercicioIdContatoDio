@@ -1,9 +1,12 @@
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.function.Function;
 
 public class IdContato {
     
@@ -48,7 +51,7 @@ public class IdContato {
         }
 
 
-        System.out.println("---------\nAgenda Ordem de Numérica: ");
+       /* System.out.println("---------\nAgenda Ordem de Numérica: ");
         System.out.println("--\tOrdem número telefone\t--");
        
         //precisamos organizar os valores. Logo:
@@ -58,7 +61,81 @@ public class IdContato {
         for (Map.Entry<Integer, Contato> entry: set) {
             System.out.println(entry.getKey() + " - " + entry.getValue().getNumero() +
                     ": " +entry.getValue().getNome());
+        } */
+
+        //EXEMPLO CLASSE ANÔNIMA AULA STREAM API PARTE 1
+
+        System.out.println("--\tOrdem número telefone\t--");
+        //precisamos organizar os valores. Logo:
+       /* Set<Map.Entry<Integer, Contato>> set = new TreeSet<>(new Comparator<Map.Entry<Integer, Contato>> () {
+            @Override
+            public int compare(Map.Entry<Integer, Contato> c1, Map.Entry<Integer, Contato> c2) {
+               return Integer.compare(c1.getValue().getNumero(), c2.getValue().getNumero());
+
+            }
+
+        });*/
+        
+        
+        /*Set<Map.Entry<Integer, Contato>> set = new TreeSet<>(Comparator.comparing(
+            new Function<Map.Entry<Integer, Contato>, Integer >() {
+
+                @Override
+                public Integer apply(Entry<Integer, Contato> cont) {
+                    // TODO Auto-generated method stub
+                    return cont.getValue().getNumero();
+                }
+            
+        }));
+        set.addAll(agenda.entrySet());
+        for (Map.Entry<Integer, Contato> entry: set) {
+
+
+            System.out.println(entry.getKey() + " - " + entry.getValue().getNumero() + " - " + entry.getValue().getNome());
+
+        }*/
+
+        // LAMBDA AULA STREAM API PARTE 1
+
+        Set<Map.Entry<Integer, Contato>> set = new TreeSet<>(Comparator.comparing(
+            cont -> cont.getValue().getNumero()));
+               
+        
+        
+        set.addAll(agenda.entrySet());
+        for (Map.Entry<Integer, Contato> entry: set) {
+
+
+            System.out.println(entry.getKey() + " - " + entry.getValue().getNumero() + " - " + entry.getValue().getNome());
+
         }
+
+
+
+
+        
+
+        
+        
+    
+    
+    
+    
+    
+    
+    }
+
+        
+        
+ 
+
+
+        
+        
+    
+
+
+
 
 
 
@@ -67,5 +144,6 @@ public class IdContato {
         
     }
 
+    
 
-}
+
